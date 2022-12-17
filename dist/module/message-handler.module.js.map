@@ -1,0 +1,1 @@
+{"version":3,"file":"message-handler.module.js","sourceRoot":"","sources":["../../src/module/message-handler.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAsC;AACtC,yDAAkD;AAClD,kFAA2E;AAO3E,IAAa,oBAAoB,GAAjC,MAAa,oBAAoB;CAAG,CAAA;AAAvB,oBAAoB;IALhC,IAAA,eAAM,EAAC;QACJ,OAAO,EAAE,CAAC,iCAAc,CAAC;QACzB,SAAS,EAAE,CAAC,+CAAqB,CAAC;KACrC,CAAC;GAEW,oBAAoB,CAAG;AAAvB,oDAAoB"}

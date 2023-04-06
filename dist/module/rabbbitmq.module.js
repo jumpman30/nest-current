@@ -18,7 +18,7 @@ RabbitmqModule = __decorate([
             nestjs_rabbitmq_1.RabbitMQModule.forRoot(nestjs_rabbitmq_1.RabbitMQModule, {
                 exchanges: [
                     {
-                        name: props_1.props.rabbit.resources.notification_exchange,
+                        name: props_1.props.rabbit.resources.message_exchange,
                         type: props_1.props.rabbit.type,
                     },
                 ],

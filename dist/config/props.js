@@ -9,7 +9,7 @@ const props = {
             notification_routingKey: 'notification',
             message_exchange: 'message-exchange',
             message_routingKey: 'message',
-            message_queue: 'message-queue'
+            message_queue: 'message'
         },
         type: 'topic'
     }

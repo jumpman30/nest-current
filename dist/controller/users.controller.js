@@ -19,7 +19,6 @@ const http_exception_filter_1 = require("../errorHandlingFilters/http-exception.
 const update_user_dto_1 = require("../dto/update-user.dto");
 const entity_serialize_interceptor_1 = require("../interceptors/entity-serialize.interceptor");
 const create_user_dto_1 = require("../dto/create-user.dto");
-const microservices_1 = require("@nestjs/microservices");
 const nestjs_rabbitmq_1 = require("@golevelup/nestjs-rabbitmq");
 const props_1 = require("../config/props");
 let UsersController = class UsersController {
@@ -61,13 +60,12 @@ let UsersController = class UsersController {
         return this.userService.findOne(parseInt(id));
     }
     async publishUserCreationNotification(user) {
-        this.amqpConnection.publish(props_1.props.rabbit.resources.notification_exchange, props_1.props.rabbit.resources.notification_routingKey, user);
+        this.amqpConnection.publish(props_1.props.rabbit.resources.message_exchange, props_1.props.rabbit.resources.message_routingKey, user);
     }
 };
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UseInterceptors)(new entity_serialize_interceptor_1.EntitySerializeInterceptor()),
-    (0, microservices_1.EventPattern)('message'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),

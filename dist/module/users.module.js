@@ -25,10 +25,10 @@ UsersModule = __decorate([
         providers: [users_service_1.UsersService, cron_service_1.CronService, {
                 provide: nestjs_rabbitmq_1.AmqpConnection,
                 useFactory: async () => {
-                    const connection = new nestjs_rabbitmq_1.AmqpConnection({ name: 'rabbitmq-nest',
+                    const connection = new nestjs_rabbitmq_1.AmqpConnection({ name: 'nest-current',
                         uri: props_1.props.rabbit.host,
                         exchanges: [{
-                                name: props_1.props.rabbit.resources.notification_exchange,
+                                name: props_1.props.rabbit.resources.message_exchange,
                                 type: props_1.props.rabbit.type,
                             }]
                     });

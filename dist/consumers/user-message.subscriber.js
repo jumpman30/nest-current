@@ -13,10 +13,12 @@ exports.UserMessageSubscriber = void 0;
 const props_1 = require("../config/props");
 const nestjs_rabbitmq_1 = require("@golevelup/nestjs-rabbitmq");
 const common_1 = require("@nestjs/common");
+const user_dto_1 = require("../dto/user.dto");
 let UserMessageSubscriber = class UserMessageSubscriber {
     constructor() {
     }
     async processMessageNotification(data) {
+        console.log('Getting message from RabbitMQ');
         console.log(data);
         return;
     }
@@ -28,7 +30,7 @@ __decorate([
         queue: props_1.props.rabbit.resources.message_queue,
     }),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [user_dto_1.UserDto]),
     __metadata("design:returntype", Promise)
 ], UserMessageSubscriber.prototype, "processMessageNotification", null);
 UserMessageSubscriber = __decorate([

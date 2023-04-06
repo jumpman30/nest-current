@@ -18,8 +18,7 @@ async function bootstrap() {
     },
   },);
 
-
-    //restApp.useGlobalPipes(new ValidationPipe());
+    restApp.useGlobalPipes(new ValidationPipe());
     await rabbitApp.listen();
     await restApp.listen(7077);
 }

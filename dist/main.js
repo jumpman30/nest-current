@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./module/app.module");
+const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
 const props_1 = require("./config/props");
 const message_handler_module_1 = require("./module/message-handler.module");
@@ -17,6 +18,7 @@ async function bootstrap() {
             },
         },
     });
+    restApp.useGlobalPipes(new common_1.ValidationPipe());
     await rabbitApp.listen();
     await restApp.listen(7077);
 }

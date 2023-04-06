@@ -7,7 +7,7 @@ import { DeleteUserDto } from '../dto/delete-user.dto';
 import { AmqpConnection } from "@golevelup/nestjs-rabbitmq";
 export declare class UsersController {
     private readonly userService;
-    amqpConnection: AmqpConnection;
+    private readonly amqpConnection;
     constructor(userService: UsersService, amqpConnection: AmqpConnection);
     create(userDto: CreateUserDto): Promise<User>;
     findByUsername(username: string): Promise<User>;

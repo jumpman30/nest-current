@@ -7,7 +7,7 @@ import {props} from "../config/props";
         RabbitMQModule.forRoot(RabbitMQModule, {
             exchanges: [
                 {
-                    name: props.rabbit.resources.notification_exchange,
+                    name: props.rabbit.resources.message_exchange,
                     type: props.rabbit.type,
                 },
             ],

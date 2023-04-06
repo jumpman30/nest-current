@@ -20,7 +20,6 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 import { EntitySerializeInterceptor } from '../interceptors/entity-serialize.interceptor';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { DeleteUserDto } from '../dto/delete-user.dto';
-import {EventPattern} from "@nestjs/microservices";
 import {AmqpConnection} from "@golevelup/nestjs-rabbitmq";
 import {props} from "../config/props";
 
@@ -29,21 +28,18 @@ import {props} from "../config/props";
 export class UsersController {
   constructor(
       private readonly userService: UsersService,
-      public amqpConnection: AmqpConnection
+      private readonly amqpConnection: AmqpConnection
   ) {}
 
   @Post()
   //you can use an interceptor globally or only at a specific module
   @UseInterceptors(new EntitySerializeInterceptor())
-  @EventPattern('message')
   async create(@Body() userDto: CreateUserDto): Promise<User> {
     try {
 
       const user = await this.userService.create(userDto.username, userDto.password);
 
-      //TODO: add logic map this to a user-creation-notification-dto
-      //TODO: maybe implement a pub/sub pattern with a queue for every type of notification
-      await this.publishUserCreationNotification(user);
+        await this.publishUserCreationNotification(user);
        return user;
     } catch (err) {
       throw new HttpException(err.message, HttpStatus.BAD_REQUEST);
@@ -87,8 +83,8 @@ export class UsersController {
    private async publishUserCreationNotification(user: User): Promise<void> {
     //TODO: map type of operation to proper notification
      this.amqpConnection.publish(
-         props.rabbit.resources.notification_exchange,
-         props.rabbit.resources.notification_routingKey,
+         props.rabbit.resources.message_exchange,
+         props.rabbit.resources.message_routingKey,
          user
      );
   }

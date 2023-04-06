@@ -14,10 +14,10 @@ import {props} from "../config/props";
   providers: [UsersService, CronService, {
     provide: AmqpConnection,
     useFactory: async () => {
-      const connection = new AmqpConnection({name: 'rabbitmq-nest',
+      const connection = new AmqpConnection({name: 'nest-current',
         uri: props.rabbit.host,
         exchanges: [{
-          name: props.rabbit.resources.notification_exchange,
+          name: props.rabbit.resources.message_exchange,
           type: props.rabbit.type,
         }]
       });
